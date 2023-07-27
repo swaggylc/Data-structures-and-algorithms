@@ -45,6 +45,21 @@ function Stack() {
 
 // console.log(stack.toString());
 
+// 十进制转二进制（除二取余法）
+function DecimalToBinary(num) {
+    let s = new Stack()
 
+    while (num > 0) {
+        s.push(num % 2)
+        num = Math.floor(num / 2)
+    }
+    let str = ''
+    // 依次出栈
+    while (!s.isEmpty()) {
+        str += s.pop()
+    }
+    return str
 
+}
 
+console.log(DecimalToBinary(10));
