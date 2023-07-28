@@ -78,7 +78,20 @@ function LinkedList() {
         }
         return current.data
     }
+    // indexOf方法
+    LinkedList.prototype.indexOf = function (data) {
+        let current = this.head
+        let index = 0
 
+        while (current) {
+            if (current.data === data) {
+                return index
+            }
+            current = current.next
+            index += 1
+        }
+        return -1
+    }
 
 
 }
@@ -93,6 +106,7 @@ link.append(5)
 link.insert(100, 3)
 link.insert('aaa', 0)
 
-console.log(link.get(5));
-
 console.log(link.toString());
+
+console.log(link.indexOf(5));
+
