@@ -133,6 +133,11 @@ function LinkedList() {
         this.length -= 1
         return current.data
     }
+    // remove方法
+    LinkedList.prototype.remove = function (data) {
+        // 获取位置
+        return this.removeAt(this.indexOf(data))
+    }
 
 }
 
@@ -148,6 +153,6 @@ link.insert('aaa', 0)
 
 console.log(link.toString());
 
-console.log(link.removeAt(3));
+console.log(link.remove(5));
 
 console.log(link.toString());
