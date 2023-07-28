@@ -92,6 +92,27 @@ function LinkedList() {
         }
         return -1
     }
+    // update方法
+    LinkedList.prototype.update = function (data, position) {
+        // 判断是否越界
+        if (position < 0 || position >= this.length) return false
+
+        let current = this.head
+        let index = 0
+        // while (current) {
+        //     if (position == index) {
+        //         current.data = data
+        //     }
+        //     current = current.next
+        //     index += 1
+        // }
+        // return true
+        while (index++ < position) {
+            current = current.next
+        }
+        current.data = data
+        return true
+    }
 
 
 }
@@ -108,5 +129,6 @@ link.insert('aaa', 0)
 
 console.log(link.toString());
 
-console.log(link.indexOf(5));
+console.log(link.update('ggg', 4));
 
+console.log(link.toString());
