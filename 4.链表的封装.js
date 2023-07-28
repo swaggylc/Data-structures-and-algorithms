@@ -66,7 +66,18 @@ function LinkedList() {
         this.length += 1
         return true
     }
-
+    // get方法
+    LinkedList.prototype.get = function (position) {
+        // 判断是否越界
+        if (position < 0 || position >= this.length) return null
+        // 拿出数据
+        let current = this.head
+        let index = 0
+        while (index++ < position) {
+            current = current.next
+        }
+        return current.data
+    }
 
 
 
@@ -79,6 +90,9 @@ link.append(2)
 link.append(3)
 link.append(4)
 link.append(5)
+link.insert(100, 3)
+link.insert('aaa', 0)
 
-console.log(link);
+console.log(link.get(5));
+
 console.log(link.toString());
