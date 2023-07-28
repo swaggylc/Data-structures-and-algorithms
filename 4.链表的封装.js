@@ -96,7 +96,6 @@ function LinkedList() {
     LinkedList.prototype.update = function (data, position) {
         // 判断是否越界
         if (position < 0 || position >= this.length) return false
-
         let current = this.head
         let index = 0
         // while (current) {
@@ -113,7 +112,27 @@ function LinkedList() {
         current.data = data
         return true
     }
-
+    // removeAt方法
+    LinkedList.prototype.removeAt = function (position) {
+        // 越界判断
+        if (position < 0 || position >= this.length || position == undefined) return null
+        let index = 0
+        let previous = null
+        let current = this.head
+        // 若移除第0个位置的节点
+        if (position == 0) {
+            this.head = current.next
+        } else {
+            while (index++ < position) {
+                previous = current
+                current = current.next
+            }
+            previous.next = current.next
+        }
+        //长度变化，length-1
+        this.length -= 1
+        return current.data
+    }
 
 }
 
@@ -129,6 +148,6 @@ link.insert('aaa', 0)
 
 console.log(link.toString());
 
-console.log(link.update('ggg', 4));
+console.log(link.removeAt(3));
 
 console.log(link.toString());
