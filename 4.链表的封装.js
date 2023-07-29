@@ -138,6 +138,13 @@ function LinkedList() {
         // 获取位置
         return this.removeAt(this.indexOf(data))
     }
+    // isEmpty方法
+    LinkedList.prototype.isEmpty = function () {
+        return this.length == 0
+    }
+    LinkedList.prototype.size = function () {
+        return this.length
+    }
 
 }
 
@@ -153,6 +160,6 @@ link.insert('aaa', 0)
 
 console.log(link.toString());
 
-console.log(link.remove(5));
+console.log(link.size());
 
 console.log(link.toString());
