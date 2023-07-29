@@ -58,6 +58,43 @@ function DoubleLinkedList() {
     DoubleLinkedList.prototype.backwordString = function () {
         return this.toString()
     }
+    // insert方法
+    DoubleLinkedList.prototype.insert = function (data, position) {
+        // 新建节点
+        let node = new Node(data)
+        // 判断是否越界
+        if (position < 0 || position > this.length) {
+            return false
+        }
+        let current = this.head
+        let index = 0
+        // 判断链表是否为空
+        if (this.length == 0) {
+            this.head = node
+            this.tail = node
+        } else {
+            // 判断插入的位置
+            if (position == 0) {
+                this.head = node
+                node.next = current
+                current.previous = node
+            } else if (position == this.length) {
+                this.tail.next = node
+                node.previous = this.tail
+                this.tail = node
+            } else {
+                while (index++ < position) {
+                    current = current.next
+                }
+                current.previous.next = node
+                node.previous = current.previous
+                current.previous = node
+                node.next = current
+            }
+        }
+        this.length += 1
+        return true
+    }
 
 
 }
@@ -71,7 +108,10 @@ doubleLL.append(10)
 doubleLL.append(110)
 doubleLL.append(119)
 
-console.log(doubleLL.backwordString());
-console.log(doubleLL.forwordString());
+console.log(doubleLL.toString());
+
+
+console.log(doubleLL.insert('aaa', 2));
+
 
 console.log(doubleLL.toString());
