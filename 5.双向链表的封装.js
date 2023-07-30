@@ -122,7 +122,16 @@ function DoubleLinkedList() {
     }
 
     // update方法
-    DoubleLinkedList.prototype.update = function () {
+    DoubleLinkedList.prototype.update = function (data, position) {
+        // 判断是否越界
+        if (position < -1 || position >= this.length) return false
+        let current = this.head
+        let index = 0
+        while (index++ < position) {
+            current = current.next
+        }
+        current.data = data
+        return true
 
     }
 
@@ -152,7 +161,7 @@ doubleLL.append(119)
 console.log(doubleLL.toString());
 
 
-console.log(doubleLL.indexOf(1419));
+console.log(doubleLL.update('aaa', 88));
 
 
 console.log(doubleLL.toString());
