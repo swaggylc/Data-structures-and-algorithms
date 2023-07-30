@@ -175,6 +175,25 @@ function DoubleLinkedList() {
         return this.removeAt(this.indexOf(data))
     }
 
+    // isEmpty方法
+    DoubleLinkedList.prototype.isEmpty = function () {
+        return this.length == 0
+    }
+
+    // size方法
+    DoubleLinkedList.prototype.size = function () {
+        return this.length
+    }
+
+    // 返回链表的第一个节点
+    DoubleLinkedList.prototype.getHead = function () {
+        return this.head.data
+    }
+
+    // 返回链表的最后一个节点
+    DoubleLinkedList.prototype.getTail = function () {
+        return this.tail.data
+    }
 
 }
 
