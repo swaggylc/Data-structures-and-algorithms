@@ -109,12 +109,16 @@ function DoubleLinkedList() {
 
     // indexOf方法
     DoubleLinkedList.prototype.indexOf = function (data) {
-
-
-
-
-
-
+        let current = this.head
+        let index = 0
+        while (current) {
+            if (current.data === data) {
+                return index
+            }
+            current = current.next
+            index += 1
+        }
+        return -1
     }
 
     // update方法
@@ -148,7 +152,7 @@ doubleLL.append(119)
 console.log(doubleLL.toString());
 
 
-console.log(doubleLL.get(5));
+console.log(doubleLL.indexOf(1419));
 
 
 console.log(doubleLL.toString());
