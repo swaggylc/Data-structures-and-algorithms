@@ -95,6 +95,43 @@ function DoubleLinkedList() {
         this.length += 1
         return true
     }
+    // get方法
+    DoubleLinkedList.prototype.get = function (position) {
+        // 判断是否越界
+        if (position < -1 || position >= this.length) return null
+        let current = this.head
+        let index = 0
+        while (index++ < position) {
+            current = current.next
+        }
+        return current.data
+    }
+
+    // indexOf方法
+    DoubleLinkedList.prototype.indexOf = function (data) {
+
+
+
+
+
+
+    }
+
+    // update方法
+    DoubleLinkedList.prototype.update = function () {
+
+    }
+
+    // removeAt方法
+    DoubleLinkedList.prototype.removeAt = function () {
+
+    }
+
+
+    // remove方法
+    DoubleLinkedList.prototype.remove = function () {
+
+    }
 
 
 }
@@ -111,7 +148,7 @@ doubleLL.append(119)
 console.log(doubleLL.toString());
 
 
-console.log(doubleLL.insert('aaa', 2));
+console.log(doubleLL.get(5));
 
 
 console.log(doubleLL.toString());
