@@ -98,7 +98,7 @@ function DoubleLinkedList() {
     // get方法
     DoubleLinkedList.prototype.get = function (position) {
         // 判断是否越界
-        if (position < -1 || position >= this.length) return null
+        if (position < 0 || position >= this.length) return null
         let current = this.head
         let index = 0
         while (index++ < position) {
@@ -124,7 +124,7 @@ function DoubleLinkedList() {
     // update方法
     DoubleLinkedList.prototype.update = function (data, position) {
         // 判断是否越界
-        if (position < -1 || position >= this.length) return false
+        if (position < 0 || position >= this.length) return false
         let current = this.head
         let index = 0
         while (index++ < position) {
@@ -136,10 +136,38 @@ function DoubleLinkedList() {
     }
 
     // removeAt方法
-    DoubleLinkedList.prototype.removeAt = function () {
-
+    DoubleLinkedList.prototype.removeAt = function (position) {
+        // 判断越界
+        if (position < 0 || position >= this.length) return false
+        let current = this.head
+        let index = 0
+        // 若链表只有一个节点
+        if (this.length == 1) {
+            this.head = null
+            this.tail = null
+        } else {
+            if (position == 0) {
+                // 若删除的位置为0
+                this.head = current.next
+                this.head.previous = null
+            } else if (position == this.length - 1) {
+                // 若删除的是最后一个
+                current = this.tail
+                this.tail = current.previous
+                this.tail.next = null
+            } else {
+                while (index++ < position) {
+                    current = current.next
+                }
+                current.previous.next = current.next
+                current.next.previous = current.previous
+                current.previous = null
+                current.next = null
+            }
+        }
+        this.length -= 1
+        return current.data
     }
-
 
     // remove方法
     DoubleLinkedList.prototype.remove = function () {
@@ -161,7 +189,7 @@ doubleLL.append(119)
 console.log(doubleLL.toString());
 
 
-console.log(doubleLL.update('aaa', 88));
+console.log(doubleLL.removeAt(5));
 
 
 console.log(doubleLL.toString());
