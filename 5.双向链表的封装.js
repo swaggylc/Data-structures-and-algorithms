@@ -170,8 +170,9 @@ function DoubleLinkedList() {
     }
 
     // remove方法
-    DoubleLinkedList.prototype.remove = function () {
-
+    DoubleLinkedList.prototype.remove = function (data) {
+        // 使用indexOf方法获取index，再使用removeAt方法移除
+        return this.removeAt(this.indexOf(data))
     }
 
 
@@ -189,7 +190,7 @@ doubleLL.append(119)
 console.log(doubleLL.toString());
 
 
-console.log(doubleLL.removeAt(5));
+console.log(doubleLL.remove(1));
 
 
 console.log(doubleLL.toString());
