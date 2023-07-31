@@ -7,7 +7,7 @@ function Set() {
     // add方法
     Set.prototype.add = function (value) {
         // 判断集合上是否有该元素
-        if (this.items.has(value)) {
+        if (this.has(value)) {
             return false
         }
         // 将元素添加到集合中
@@ -18,13 +18,13 @@ function Set() {
 
     // has方法
     Set.prototype.has = function (value) {
-        return this.items.hsaOwnProperty(value)
+        return this.items.hasOwnProperty(value)
     }
 
     // remove方法
     Set.prototype.remove = function (value) {
         // 判断集合中是否有该元素
-        if (!this.items.has(value)) {
+        if (!this.has(value)) {
             return false
         }
         delete this.items[value]
@@ -53,3 +53,17 @@ function Set() {
 
 
 }
+
+
+// 使用
+let set = new Set()
+
+console.log(set.add('aaa'));
+console.log(set.add('bbb'));
+console.log(set.add('ccc'));
+console.log(set.add('aaa'));
+
+console.log(set.clear());
+
+console.log(set.values());
+
