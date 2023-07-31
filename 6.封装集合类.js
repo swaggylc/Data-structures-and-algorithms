@@ -46,7 +46,22 @@ function Set() {
         return Object.keys(this.items)
     }
 
-
+    // 集合间的操作
+    // 并集
+    Set.prototype.union = function (otherSet) {
+        // this:当前的set
+        // otherSet：另一个set
+        let newSet = new Set()
+        let values = this.values()
+        for (let i = 0; i < values.length; i++) {
+            newSet.add([values[i]])
+        }
+        let otherValues = otherSet.values()
+        for (let i = 0; i < otherValues.length; i++) {
+            newSet.add(otherValues[i])
+        }
+        return newSet
+    }
 
 
 
@@ -57,13 +72,18 @@ function Set() {
 
 // 使用
 let set = new Set()
+let otherSet = new Set()
 
 console.log(set.add('aaa'));
 console.log(set.add('bbb'));
 console.log(set.add('ccc'));
 console.log(set.add('aaa'));
+otherSet.add(111)
+otherSet.add(222)
+otherSet.add(333)
+otherSet.add(444)
 
-console.log(set.clear());
+console.log(set.union(otherSet));
 
-console.log(set.values());
+// console.log(set.values());
 
