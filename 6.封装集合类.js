@@ -63,6 +63,19 @@ function Set() {
         return newSet
     }
 
+    // 交集
+    Set.prototype.intersection = function (otherSet) {
+        // this:集合A
+        // otherSet:集合B
+        let intersectionSet = new Set()
+        let values = this.values()
+        for (let i = 0; i < values.length; i++) {
+            if (otherSet.has(values[i])) {
+                intersectionSet.add(values[i])
+            }
+        }
+        return intersectionSet
+    }
 
 
 
@@ -77,13 +90,13 @@ let otherSet = new Set()
 console.log(set.add('aaa'));
 console.log(set.add('bbb'));
 console.log(set.add('ccc'));
-console.log(set.add('aaa'));
-otherSet.add(111)
+console.log(set.add('ddd'));
+otherSet.add('aaa')
 otherSet.add(222)
 otherSet.add(333)
-otherSet.add(444)
+otherSet.add('ccc')
 
-console.log(set.union(otherSet));
+console.log(set.intersection(otherSet));
 
 // console.log(set.values());
 
