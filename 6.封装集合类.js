@@ -89,7 +89,18 @@ function Set() {
         }
         return difference
     }
-
+    // 子集
+    Set.prototype.pubset = function (otherSet) {
+        // this:集合A
+        // otherSet:集合B
+        let values = this.values()
+        for (let i = 0; i < values.length; i++) {
+            if (!otherSet.has(values[i])) {
+                return false
+            }
+        }
+        return true
+    }
 
 
 }
@@ -104,11 +115,11 @@ console.log(set.add('bbb'));
 console.log(set.add('ccc'));
 console.log(set.add('ddd'));
 otherSet.add('aaa')
-otherSet.add(222)
-otherSet.add(333)
+otherSet.add('bbb')
 otherSet.add('ccc')
+otherSet.add('ddd')
 
-console.log(set.difference(otherSet));
+console.log(set.pubset(otherSet));
 
 // console.log(set.values());
 
