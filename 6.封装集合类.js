@@ -76,7 +76,19 @@ function Set() {
         }
         return intersectionSet
     }
-
+    // 差集
+    Set.prototype.difference = function (otherSet) {
+        // this:集合A
+        // otherSet:集合B
+        let difference = new Set()
+        let values = this.values()
+        for (let i = 0; i < values.length; i++) {
+            if (!otherSet.has(values[i])) {
+                difference.add(values[i])
+            }
+        }
+        return difference
+    }
 
 
 
@@ -96,7 +108,7 @@ otherSet.add(222)
 otherSet.add(333)
 otherSet.add('ccc')
 
-console.log(set.intersection(otherSet));
+console.log(set.difference(otherSet));
 
 // console.log(set.values());
 
