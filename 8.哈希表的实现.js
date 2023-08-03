@@ -61,7 +61,27 @@ function HashTable() {
         }
         return null
     }
-
+    // 删除方法
+    HashTable.prototype.remove = function (key) {
+        // 根据key获取对应的索引
+        let index = this.hashFn(key, this.limit)
+        // 根据索引值取出bucket
+        let bucket = this.storage[index]
+        // 判断bucket是否为空
+        if (bucket == null) {
+            return false
+        }
+        // 遍历bucket，检查是否有相同的key
+        for (let i = 0; i < bucket.length; i++) {
+            let arr = bucket[i]
+            if (arr[0] === key) {
+                bucket.splice(i, 1)
+                this.count -= 1
+                return arr[1]
+            }
+        }
+        return null
+    }
 
 
 }
