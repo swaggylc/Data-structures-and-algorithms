@@ -43,7 +43,13 @@ function HashTable() {
         this.count += 1
         // 判断是否需要扩容
         if (this.count > this.limit * 0.75) {
-            this.resize(this.limit * 2)
+            // 扩容两倍
+            this.limit = this.limit * 2
+            // 判断limit是否是质数
+            while (this.isPrime(this.limit) != true) {
+                this.limit += 1
+            }
+            this.resize(this.limit)
         }
     }
     // 获取操作
@@ -83,7 +89,11 @@ function HashTable() {
                 this.count -= 1
                 // 缩小数组长度
                 if (this.limit > 7 && this.count < this.limit * 0.25) {
-                    this.resize(Math.floor(this.limit / 2))
+                    this.limit = Math.floor(this.limit / 2)
+                    while (this.isPrime(this.limit) != true) {
+                        this.limit += 1
+                    }
+                    this.resize(this.limit)
                 }
                 return arr[1]
             }
@@ -121,6 +131,16 @@ function HashTable() {
             }
         }
 
+    }
+    // 判断质数方法
+    HashTable.prototype.isPrime = function (number) {
+        let temp = parseInt(Math.sqrt(number))
+        for (let i = 2; i < temp; i++) {
+            if (number % i == 0) {
+                return false
+            }
+        }
+        return true
     }
 
 }
