@@ -82,6 +82,57 @@ function HashTable() {
         }
         return null
     }
-
+    // 判断哈希表是否为空
+    HashTable.prototype.isEmpty = function () {
+        return this.count == 0
+    }
+    // 获取哈希表元素个数
+    HashTable.prototype.size = function () {
+        return this.count
+    }
 
 }
+
+// 测试
+let hashtable = new HashTable()
+// 插入数据
+hashtable.put('张三', {
+    name: '张三',
+    age: 18,
+    address: '北京'
+})
+hashtable.put('李四', {
+    name: '李四',
+    age: 28,
+    address: '上海'
+})
+hashtable.put('王五', {
+    name: '王五',
+    age: 45,
+    address: '天津'
+})
+
+// 获取数据
+console.log(hashtable.get('张三'));
+console.log(hashtable.get('李四'));
+console.log(hashtable.get('王五'));
+console.log('aaa', hashtable.get('aaa'));
+
+
+// 修改方法
+hashtable.put('王五', {
+    name: '王五',
+    age: 45,
+    address: 'jiangxi'
+})
+
+console.log(hashtable.get('张三'));
+console.log(hashtable.get('李四'));
+console.log(hashtable.get('王五'));
+
+// 删除方法
+hashtable.remove('张三')
+
+console.log('张三',hashtable.get('张三'));
+console.log(hashtable.get('李四'));
+console.log(hashtable.get('王五'));
