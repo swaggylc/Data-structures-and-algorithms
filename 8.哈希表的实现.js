@@ -42,7 +42,25 @@ function HashTable() {
         // count加一
         this.count += 1
     }
-
+    // 获取操作
+    HashTable.prototype.get = function (key) {
+        // 根据key获取对应的索引
+        let index = this.hashFn(key, this.limit)
+        // 根据索引值取出bucket
+        let bucket = this.storage[index]
+        // 判断bucket是否为空
+        if (bucket == null) {
+            return null
+        }
+        // 遍历bucket，检查是否有相同的key
+        for (let i = 0; i < bucket.length; i++) {
+            let arr = bucket[i]
+            if (arr[0] === key) {
+                return arr
+            }
+        }
+        return null
+    }
 
 
 
