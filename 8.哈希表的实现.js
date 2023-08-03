@@ -41,6 +41,10 @@ function HashTable() {
         bucket.push([key, value])
         // count加一
         this.count += 1
+        // 判断是否需要扩容
+        if (this.count > this.limit * 0.75) {
+            this.resize(this.limit * 2)
+        }
     }
     // 获取操作
     HashTable.prototype.get = function (key) {
@@ -77,6 +81,10 @@ function HashTable() {
             if (arr[0] === key) {
                 bucket.splice(i, 1)
                 this.count -= 1
+                // 缩小数组长度
+                if (this.limit > 7 && this.count < this.limit * 0.25) {
+                    this.resize(Math.floor(this.limit / 2))
+                }
                 return arr[1]
             }
         }
@@ -89,6 +97,30 @@ function HashTable() {
     // 获取哈希表元素个数
     HashTable.prototype.size = function () {
         return this.count
+    }
+
+    // 哈希表扩容
+    HashTable.prototype.resize = function (newLimit) {
+        let oldStorage = this.storage
+        // 重置属性
+        this.storage = []
+        this.limit = newLimit
+        this.count = 0
+        // 遍历oldStorage
+        for (let i = 0; i < oldStorage.length; i++) {
+            if (oldStorage[i] == null) {
+                continue
+            }
+            // 取出bucket
+            let bucket = oldStorage[i]
+            // 遍历bucket
+            for (let i = 0; i < bucket.length; i++) {
+                let arr = bucket[i]
+                // 将元素put到新数组
+                this.storage.put(arr[0], arr[1])
+            }
+        }
+
     }
 
 }
@@ -133,6 +165,6 @@ console.log(hashtable.get('王五'));
 // 删除方法
 hashtable.remove('张三')
 
-console.log('张三',hashtable.get('张三'));
+console.log('张三', hashtable.get('张三'));
 console.log(hashtable.get('李四'));
 console.log(hashtable.get('王五'));
