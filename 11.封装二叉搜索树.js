@@ -60,19 +60,54 @@ function BinarySerachTree() {
 
     // reValue(key,value) 修改操作，暂不考虑
 
-    // inOrderTraverse 中序遍历
-    BinarySerachTree.prototype.inOrderTraverse = function () {
-
-    }
 
     // preOrderTraverse 先序遍历
     BinarySerachTree.prototype.preOrderTraverse = function () {
+        if (this.root == null) return null
+        this.preOrderTraverseNode(this.root)
+    }
+    BinarySerachTree.prototype.preOrderTraverseNode = function (node) {
+        if (node != null) {
+            // 处理这个节点
+            console.log(node.key);
+            // 处理其左节点
+            this.preOrderTraverseNode(node.left)
+            // 处理其右节点
+            this.preOrderTraverseNode(node.right)
 
+        }
+    }
+
+    // inOrderTraverse 中序遍历
+    BinarySerachTree.prototype.inOrderTraverse = function () {
+        if (this.root == null) return null
+        this.inOrderTraverseNode(this.root)
+    }
+    BinarySerachTree.prototype.inOrderTraverseNode = function (node) {
+        if (node != null) {
+            // 处理其左节点
+            this.inOrderTraverseNode(node.left)
+            // 处理这个节点
+            console.log(node.key);
+            // 处理其右节点
+            this.inOrderTraverseNode(node.right)
+        }
     }
 
     // postOrderTraverse 后序遍历
     BinarySerachTree.prototype.postOrderTraverse = function () {
-
+        if (this.root == null) return null
+        this.postOrderTraverseNode(this.root)
+    }
+    BinarySerachTree.prototype.postOrderTraverseNode = function (node) {
+        if (node != null) {
+            // 处理其左节点
+            this.postOrderTraverseNode(node.left)
+            // 处理其右节点
+            this.postOrderTraverseNode(node.right)
+            // 处理这个节点
+            console.log(node.key);
+        }
     }
 
     // min 树中的最小值
@@ -101,3 +136,9 @@ binaryST.insert(5)
 binaryST.insert(8)
 binaryST.insert(10)
 binaryST.insert(17)
+
+binaryST.preOrderTraverse()
+console.log('-------------');
+binaryST.inOrderTraverse()
+console.log('-------------');
+binaryST.postOrderTraverse()
