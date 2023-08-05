@@ -176,7 +176,20 @@ function BinarySerachTree() {
             }
             if (current == null) return false
         }
+        // 删除的节点是叶子节点
+        if (current.left == null && current.right == null) {
+            if (current == this.root) {
+                this.root = null
+            }
+            if (isLeftChild) {
+                parent.left = null
+            } else {
+                parent.right = null
+            }
+        }
+        // 删除的节点有一个子节点
 
+        // 删除的节点有两个子节点
 
 
 
