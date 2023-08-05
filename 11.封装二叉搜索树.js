@@ -160,6 +160,36 @@ function BinarySerachTree() {
 
     // remove(key) 移除某个节点
     BinarySerachTree.prototype.remove = function (key) {
+        if (this.root == null) return false
+        let current = this.root
+        let parent = null
+        let isLeftChild = true
+        // 查找节点
+        while (current.key != key) {
+            parent = current
+            if (current.key > key) {
+                isLeftChild = true
+                current = current.left
+            } else {
+                isLeftChild = false
+                current = current.right
+            }
+            if (current == null) return false
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
