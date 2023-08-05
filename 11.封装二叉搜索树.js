@@ -176,6 +176,9 @@ function BinarySerachTree() {
             }
             if (current == null) return false
         }
+        // 跳出循环后，current即为想删除的节点
+        // parent为想删除节点的父节点
+
         // 删除的节点是叶子节点
         if (current.left == null && current.right == null) {
             if (current == this.root) {
@@ -205,20 +208,38 @@ function BinarySerachTree() {
             }
         }
         // 删除的节点有两个子节点
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // current节点（要删除的节点），找最接近current节点的值节点，也就是：
+        // current节点左子树的最大值（前驱）；右子树的最小值（后继）
+        else {
+            let successorNode = this.getSuccessor(current)
+            // 判断是否为根节点
+            if (current == this.root) {
+                this.root = successorNode
+            } else if (isLeftChild) {
+                parent.left = successorNode
+            } else {
+                parent.right = successorNode
+            }
+            successorNode.left = current.left
+        }
+        return true
+    }
+    // 寻找后继节点
+    BinarySerachTree.prototype.getSuccessor = function (delNode) {
+        let current = delNode.right
+        let successorNode = delNode
+        let successorParent = delNode
+        while (current) {
+            successorParent = successorNode
+            successorNode = current
+            current = current.left
+        }
+        // 如果后继节点不是删除节点的右节点
+        if (successorNode != delNode.right) {
+            successorParent.left = successorNode.right
+            successorNode.right = delNode.right
+        }
+        return successorNode
     }
 
 }
@@ -232,14 +253,20 @@ binaryST.insert(5)
 binaryST.insert(8)
 binaryST.insert(10)
 binaryST.insert(17)
+binaryST.insert(15)
+binaryST.insert(20)
+binaryST.insert(16)
 
-binaryST.preOrderTraverse()
+binaryST.inOrderTraverse()
 console.log('-------------');
-console.log('最小值--', binaryST.min());
+// console.log('最小值--', binaryST.min());
+// console.log('-------------');
+// console.log('最大值--', binaryST.max());
+// console.log('-------------');
+// console.log('搜索节点--10', binaryST.search(10));
+// console.log('搜索节点--23', binaryST.search(23));
+// console.log('搜索节点--5', binaryST.search(5));
+// console.log('搜索节点--9', binaryST.search(9));
+console.log(binaryST.remove(13));
 console.log('-------------');
-console.log('最大值--', binaryST.max());
-console.log('-------------');
-console.log('搜索节点--10', binaryST.search(10));
-console.log('搜索节点--23', binaryST.search(23));
-console.log('搜索节点--5', binaryST.search(5));
-console.log('搜索节点--9', binaryST.search(9));
+binaryST.inOrderTraverse()
