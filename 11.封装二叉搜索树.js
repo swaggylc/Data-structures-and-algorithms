@@ -180,15 +180,30 @@ function BinarySerachTree() {
         if (current.left == null && current.right == null) {
             if (current == this.root) {
                 this.root = null
-            }
-            if (isLeftChild) {
+            } else if (isLeftChild) {
                 parent.left = null
             } else {
                 parent.right = null
             }
         }
         // 删除的节点有一个子节点
-
+        else if (current.right == null) {
+            if (current == this.root) {
+                this.root = current.left
+            } else if (isLeftChild) {
+                parent.left = current.left
+            } else {
+                parent.right = current.left
+            }
+        } else if (current.left == null) {
+            if (current == this.root) {
+                this.root = current.right
+            } else if (isLeftChild) {
+                parent.left = current.right
+            } else {
+                parent.right = current.right
+            }
+        }
         // 删除的节点有两个子节点
 
 
