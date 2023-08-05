@@ -127,12 +127,22 @@ function BinarySerachTree() {
 
     // min 树中的最小值
     BinarySerachTree.prototype.min = function () {
-
+        if (this.root == null) return null
+        let current = this.root
+        while (current.left != null) {
+            current = current.left
+        }
+        return current.key
     }
 
     // max 树中的最大值
     BinarySerachTree.prototype.max = function () {
-
+        if (this.root == null) return null
+        let current = this.root
+        while (current.right != null) {
+            current = current.right
+        }
+        return current.key
     }
 
     // remove(key) 移除某个节点
@@ -154,6 +164,6 @@ binaryST.insert(17)
 
 binaryST.preOrderTraverse()
 console.log('-------------');
-binaryST.inOrderTraverse()
+console.log('最小值--', binaryST.min());
 console.log('-------------');
-binaryST.postOrderTraverse()
+console.log('最大值--', binaryST.max());
