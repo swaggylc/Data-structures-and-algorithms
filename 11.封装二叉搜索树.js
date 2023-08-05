@@ -70,7 +70,20 @@ function BinarySerachTree() {
 
     // search(key) 查找节点
     BinarySerachTree.prototype.search = function (key) {
-
+        if (this.root == null) return false
+        let current = this.root
+        while (current) {
+            if (current.key == key) {
+                return true
+            } else {
+                if (current.key < key) {
+                    current = current.right
+                } else {
+                    current = current.left
+                }
+            }
+        }
+        return false
     }
 
     // reValue(key,value) 修改操作，暂不考虑
@@ -167,3 +180,8 @@ console.log('-------------');
 console.log('最小值--', binaryST.min());
 console.log('-------------');
 console.log('最大值--', binaryST.max());
+console.log('-------------');
+console.log('搜索节点--10', binaryST.search(10));
+console.log('搜索节点--23', binaryST.search(23));
+console.log('搜索节点--5', binaryST.search(5));
+console.log('搜索节点--9', binaryST.search(9));
